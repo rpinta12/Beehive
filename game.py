@@ -7,6 +7,7 @@ stage = "start screen"
 width = 800
 height = 600
 
+#github test
 
 
 screen = pygame.display.set_mode((width, height))
