@@ -1,4 +1,5 @@
 import pygame
+import inputStuff
 pygame.init()
 
 #-------------------------------------INITIAL SETUP
@@ -14,7 +15,7 @@ screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('HONEY ADVENTURES')
 
 
-#-------------------------------------LEVELS, WORLD, AND MAP
+#-------------------------------------LEVELS, WORLD, AND MAP-----------------------------------
 #----------------VARIABLES
 #Text/Images for Start Screen
 fontStartScreen = pygame.font.Font('freesansbold.ttf', 60)
@@ -41,7 +42,45 @@ def drawEndScreen(screen):
     screen.blit(textEndScreen1,(150,200))
     screen.blit(textEndScreen2, (30, 300))
 
-#-------------------------------------PLAYER
+#-------------------------------------PLAYER-----------------------------------
+#----------------VARIABLES
+playerImage = pygame.image.load("pics/hero.png")
+playerImage = pygame.transform.scale(playerImage,(80,60)).convert_alpha()
+playerImage = pygame.transform.flip(playerImage,True,False)
+player = playerImage.get_rect(topleft = (200,200))
+playerSpeed = 3
+playerVelX = 0
+playerVelY = 0
+playerHealth = 5
+
+
+#----------------Functions
+def drawPlayer(screen):
+    screen.blit(playerImage,player)
+def updatePlayer():
+    #any variable you change from above need to be referenced as global here
+    global playerVelX, playerVelX, playerHealth
+    if (inputStuff.inputs["UP"]):
+        playerVelY = -playerSpeed
+    elif(inputStuff.inputs["DOWN"]):
+        playerVelY = playerSpeed
+    else:
+        playerVelY = 0
+    player.y += playerVelY
+
+    if (inputStuff.inputs["LEFT"]):
+        playerVelX = -playerSpeed
+    elif(inputStuff.inputs["RIGHT"]):
+        playerVelX = playerSpeed
+    else:
+        playerVelX = 0
+    player.x += playerVelX
+
+
+
+
+
+#-------------------------------------ENEMY-----------------------------------
 #----------------VARIABLES
 
 
@@ -52,19 +91,7 @@ def drawEndScreen(screen):
 
 
 
-
-#-------------------------------------ENEMY
-#----------------VARIABLES
-
-
-
-#----------------Functions
-
-
-
-
-
-#-------------------------------------COLLECTIBLES
+#-------------------------------------COLLECTIBLES-----------------------------------
 #----------------VARIABLES
 
 
