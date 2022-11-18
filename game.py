@@ -8,9 +8,6 @@ stage = "start screen"
 width = 800
 height = 600
 
-#github test
-
-
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('HONEY ADVENTURES')
 
@@ -29,6 +26,11 @@ textEndScreen2 = fontStartScreen.render('Press 1 To RESTART', True, 'black', 'ye
 backgroundImage = pygame.image.load("pics/background.png")
 backgroundImage = pygame.transform.scale(backgroundImage,(800,600))
 
+#Text/Images For Score
+score = 0
+fontScore = pygame.font.Font('freesansbold.ttf', 20)
+textScore = fontScore.render('FLOWERS = {}'.format(score), True, 'black', 'yellow')
+
 
 #----------------Functions
 def drawStartScreen(screen):
@@ -41,7 +43,9 @@ def drawBackground(screen):
 def drawEndScreen(screen):
     screen.blit(textEndScreen1,(150,200))
     screen.blit(textEndScreen2, (30, 300))
-
+def drawScore(screen):
+    textScore = fontScore.render('FLOWERS = {}'.format(score), True, 'black', 'yellow')
+    screen.blit(textScore, (10, 10))
 #-------------------------------------PLAYER-----------------------------------
 #----------------VARIABLES
 playerImage = pygame.image.load("pics/hero.png")
@@ -75,7 +79,7 @@ def updatePlayer():
     else:
         playerVelX = 0
     player.x += playerVelX
-
+	
 
 
 
@@ -131,11 +135,15 @@ def drawCollectibles(screen):
 	    screen.blit(colImage,collectibles[i])
 
 def updateCollectibles():
+	global score
 	for i in range(0,numOfCol,1):
 		collectibles[i].x -= colSpeeds[i]
 		if(collectibles[i].x <-50):
 			colSpeeds[i] = random.randint(minColSpeed,maxColSpeed)
 			collectibles[i].x = 820
-
+		if(collectibles[i].colliderect(player)):
+			colSpeeds[i] = random.randint(minColSpeed,maxColSpeed)
+			collectibles[i].x = 820
+			score += 1
 
 

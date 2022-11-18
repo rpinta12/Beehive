@@ -25,7 +25,7 @@ while True:
 		game.drawPlayer(game.screen)
 		game.drawEnemies(game.screen)
 		game.drawCollectibles(game.screen)
-
+		game.drawScore(game.screen)
 		
 		if(inputStuff.inputs["1"]):
 			game.stage = "end screen"
