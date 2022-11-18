@@ -110,12 +110,32 @@ def updateEnemies():
 
 #-------------------------------------COLLECTIBLES-----------------------------------
 #----------------VARIABLES
+numOfCol = 3
+minColSpeed = 2
+maxColSpeed = 5
+collectibles = []
+colSpeeds = []
+colImage = pygame.image.load("pics/collectible.png")
+colImage = pygame.transform.scale(colImage,(80,60)).convert_alpha()
+for i in range(0,numOfCol,1):
+	col = colImage.get_rect(topleft = (350,100*i+100))
+	collectibles.append(col)
+	colSpeeds.append(random.randint(minColSpeed,maxColSpeed))
+
 
 
 
 #----------------Functions
+def drawCollectibles(screen):
+	for i in range(0,numOfCol,1):
+	    screen.blit(colImage,collectibles[i])
 
-
+def updateCollectibles():
+	for i in range(0,numOfCol,1):
+		collectibles[i].x -= colSpeeds[i]
+		if(collectibles[i].x <-50):
+			colSpeeds[i] = random.randint(minColSpeed,maxColSpeed)
+			collectibles[i].x = 820
 
 
 
