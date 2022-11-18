@@ -19,10 +19,11 @@ while True:
 			game.stage = "level1"
 	elif(game.stage == "level1"):
 		game.updatePlayer()
+		game.updateEnemies()
 		
 		game.drawBackground(game.screen)
 		game.drawPlayer(game.screen)
-
+		game.drawEnemies(game.screen)
 
 
 		

@@ -1,4 +1,4 @@
-import pygame
+import pygame, random
 import inputStuff
 pygame.init()
 
@@ -81,15 +81,32 @@ def updatePlayer():
 
 
 #-------------------------------------ENEMY-----------------------------------
-#----------------VARIABLES
+numOfEnemies = 3
+minEnemySpeed = 2
+maxEnemySpeed = 5
+enemies = []
+enemySpeeds = []
+enemyImage = pygame.image.load("pics/enemy.png")
+enemyImage = pygame.transform.scale(enemyImage,(80,60)).convert_alpha()
+for i in range(0,numOfEnemies,1):
+	enemy = enemyImage.get_rect(topleft = (500,100*i+100))
+	enemies.append(enemy)
+	enemySpeeds.append(random.randint(minEnemySpeed,maxEnemySpeed))
+
 
 
 
 #----------------Functions
+def drawEnemies(screen):
+	for i in range(0,numOfEnemies,1):
+	    screen.blit(enemyImage,enemies[i])
 
-
-
-
+def updateEnemies():
+	for i in range(0,numOfEnemies,1):
+		enemies[i].x -= enemySpeeds[i]
+		if(enemies[i].x <-50):
+			enemySpeeds[i] = random.randint(minEnemySpeed,maxEnemySpeed)
+			enemies[i].x = 820
 
 #-------------------------------------COLLECTIBLES-----------------------------------
 #----------------VARIABLES
