@@ -7,37 +7,14 @@ clock = pygame.time.Clock()
 
 
 while True:
-	#this draws a black screen to reset the screen.  
+	#this draws a purple screen to reset the screen.  
 	pygame.draw.rect(game.screen,'purple',pygame.Rect(0,0,800,600))
 	if(game.stage == "start screen"):
-		
-		game.drawStartScreen(game.screen)
-
-
-		
-		if(inputStuff.inputs["1"]):
-			game.stage = "level1"
+		pass
 	elif(game.stage == "level1"):
-		game.updatePlayer()
-		game.updateEnemies()
-		game.updateCollectibles()
-		game.drawBackground(game.screen)
-		game.drawPlayer(game.screen)
-		game.drawEnemies(game.screen)
-		game.drawCollectibles(game.screen)
-		game.drawScore(game.screen)
-		
-		if(inputStuff.inputs["1"]):
-			game.stage = "end screen"
+		pass
 	elif(game.stage == "end screen"):
-		game.drawEndScreen(game.screen)
-
-
-		
-		if(inputStuff.inputs["1"]):
-			
-			game.stage = "start screen"
-
+		pass
 
 	
 	clock.tick(60)
